@@ -15,7 +15,6 @@
 
 <?php
 
-
 /* ------------------------------------------------------- Login module */
 $error = '';
 if(isset($_POST['login_bpost']) && $_POST['password'] != ''){
@@ -37,31 +36,30 @@ if(isset($_GET['logout']) && $_SESSION['username'] != ''){
     header("Location: index.php");
 }
 
-
-
 ?>
 
 </head>
-<body>
-
-<?php ?>
-    <div class="login-form">
-        <form action="#" method="post">
-            <h2 class="text-center">Bpost Log in</h2>       
-            <div class="form-group">
-                <label>Enter Password: </label>
-                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
-            </div>
-            <div class="form-group">
-                <button type="submit" name="login_bpost" class="btn btn-primary btn-block">Log in</button>
-            </div>    
-            <?php
-            if($error != ''){
-                echo '<p class="alert alert-danger">'.$error.'</p>';
-            }
-            ?>
-        </form>
-    </div>
-<?php ?>
+<body style="background-image: url('./icon/delivery.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;">
+    <?php ?>
+        <div class="login-form">
+            <form action="#" method="post" style="font-family: cursive, monospace, sans-serif, serif;">
+                <h2 class="text-center">Bpost Log in</h2>       
+                <div class="form-group">
+                    <label>Enter Password: </label>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                </div>
+                <div class="form-group">
+                    <button type="submit" name="login_bpost" class="btn btn-primary btn-block">Log in</button>
+                </div>    
+                <?php
+                if($error != ''){
+                    echo '<p class="alert alert-danger">'.$error.'</p>';
+                }
+                ?>
+            </form>
+        </div>
+    <?php ?>
 </body>
 </html>

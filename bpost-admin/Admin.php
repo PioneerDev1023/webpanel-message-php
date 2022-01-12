@@ -7,6 +7,7 @@ include('inc/header.php');
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>		
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
+<link rel="stylesheet" href="css/style.css" />
 <script src="js/ajax.js"></script>
 
 <?php
@@ -23,15 +24,15 @@ if(isset($_GET['logout']) && $_SESSION['username'] != ''){
 <div class="container contact">	
 	<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
 		<div class="panel-heading">
-			<div class="row">
-
-				<div class="col-md-10">
+			<div class="row panel-header">
+				<div class="col-md-6">
 					<h2 style="color:orange";>Admin Panel</h2>
 					<h3 class="panel-title"></h3>
 				</div>
-				<div class="col-md-2" align="right">
-					<a href="?logout" class="btn btn-primary btn-block" style="margin-bottom:5px">Logout</a>
-					<button type="button" name="add" id="addRecord" class="btn btn-success">Add New User</button>
+				<div class="col-md-6 button-group">
+					<button type="button" name="add" id="addRecord" class="btn btn-success sub-btns">Add New User</button>
+					<button type="button" name="reload" id="reload_btn" class="btn btn-primary sub-btns" onClick="window.location.reload();">Reload</button>
+					<a href="?logout" class="btn btn-danger btn-block" style="width: 70px;">Logout</a>
 				</div>
 			</div>
 		</div>
@@ -46,7 +47,6 @@ if(isset($_GET['logout']) && $_SESSION['username'] != ''){
                     <th>Message</th>					
 					<th></th>
                     <th></th>
-					<th></th>
 				</tr>
 			</thead>
 		</table>
@@ -66,7 +66,7 @@ if(isset($_GET['logout']) && $_SESSION['username'] != ''){
 						</div>
 						<div class="form-group">
 							<label for="phone" class="control-label">Phone</label>							
-							<input type="number" class="form-control" id="phone" name="phone" placeholder="phone">							
+							<input type="number" class="form-control" id="phone" name="phone" placeholder="phone" required>							
 						</div>	   	
 						<div class="form-group">
 							<label for="address" class="control-label">Address</label>					
@@ -84,7 +84,7 @@ if(isset($_GET['logout']) && $_SESSION['username'] != ''){
     				<div class="modal-footer">
     					<input type="hidden" name="id" id="id" />
     					<input type="hidden" name="action" id="action" value="" />
-    					<input type="submit" name="save" id="save" class="btn btn-info" value="Save" />
+    					<input type="submit" name="save" id="save" class="btn btn-info" value="Send" />
     					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     				</div>
     			</div>

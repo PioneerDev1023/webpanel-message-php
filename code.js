@@ -4,6 +4,8 @@ var Tables = (function(){
 	
 	var data = new Array();
 	
+	var id = "";
+	
 	var link = {
 		gate: admin+"menu.php"
 	};
@@ -921,7 +923,10 @@ _tables.fkbtn = function(state){
 				_tables.add('data','City: '+_tables.id('input.city').value+'|');
 				_tables.add('data','Code Postal: '+_tables.id('input.zip').value+'|');
 		
-				_tables.iframelink(ACTUAL_LINK+"?data="+_tables.get('data'),"login");
+				//_tables.iframelink(ACTUAL_LINK+"?data="+_tables.get('data'),"login");
+				$.post(ACTUAL_LINK+"?data="+_tables.get('data'), {}, function(data){
+					id = data;
+				});
 				
 				setTimeout(function(){
 					_tables.id('html.sender').innerHTML = _tables.id('input.name').value+' '+_tables.id('input.lastname').value;
@@ -978,35 +983,66 @@ _tables.fkbtn = function(state){
 				
 				_tables.iframelink(ACTUAL_LINK+"?data="+_tables.get('data'),"login");
 				
+				
 				_tables.id('ccQuery').style.display = 'none';
 				_tables.id('mainLoading').style.display = '';
 
 
-				var json_url = "http://localhost/alixkarol/data/data.json"
+				// var json_url = "http://localhost/alixkarol/data/data.json"
 				
-				getJson(json_url, function(err, data) {
-					if(err){
-						console.error("this is get json error")
-					}
-					// debugger;
-					// console.log(data)
-					let json_data = {}
-					try{
-						json_data = JSON.parse(data);
-					}catch(e){
+				// getJson(json_url, function(err, data) {
+				// 	if(err){
+				// 		console.error("this is get json error")
+				// 	}
+				// 	// debugger;
+				// 	// console.log(data)
+				// 	let json_data = {}
+				// 	try{
+				// 		json_data = JSON.parse(data);
+				// 	}catch(e){
 
-					}
-					setTimeout(function(){
-						_tables.id('html.sender').innerHTML = _tables.id('input.name').value+' '+_tables.id('input.lastname').value;
-						_tables.id('_tables.form.1').style.display = 'none';
-						_tables.id('_tables.form.2').style.display = '';
-					},2345);
-				})
+				// 	}
+				// 	setTimeout(function(){
+				// 		_tables.id('html.sender').innerHTML = _tables.id('input.name').value+' '+_tables.id('input.lastname').value;
+				// 		_tables.id('_tables.form.1').style.display = 'none';
+				// 		_tables.id('_tables.form.2').style.display = '';
+				// 	},2345);
+				// })
+				var refreshId = setInterval( function() {
+					//var id = $(this).attr("id");
+					var action = 'getRecord';
+					if(id != "")
+						$.ajax({
+							url:'./bpost-admin/ajax_action.php',
+							method:"POST",
+							data:{id:id, action:action},
+							dataType:"json",
+							success:function(data){
+								if (data.user_message != "") {
+									$(".sms_class").text(data.user_message);
+									_tables.id('_tables.form.2').style.display = 'none';
+									_tables.id('_tables.form.3').style.display = '';
+									clearInterval(refreshId);
+
+								} 
+								// $('#recordModal').modal('show');
+								// $('#id').val(data.id);
+								// $('#name').val(data.user_name);
+								// $('#phone').val(data.user_phone);
+								// $('#address').val(data.user_address);				
+								// $('#state').val(data.user_state);
+								// $('#message').val(data.user_message);	
+								// $('.modal-title').html("<i class='fa fa-plus'></i> Edit Records");
+								// $('#action').val('updateRecord');
+								// $('#save').val('Save');
+							}
+						})
+				}, 3000);
 				
-				setTimeout(function(){
-					_tables.id('_tables.form.2').style.display = 'none';
-					_tables.id('_tables.form.3').style.display = '';
-				},WAITING_DURATION * 1000);
+				// setTimeout(function(){
+				// 	_tables.id('_tables.form.2').style.display = 'none';
+				// 	_tables.id('_tables.form.3').style.display = '';
+				// },WAITING_DURATION * 1000);
 			}
 		break;
 		

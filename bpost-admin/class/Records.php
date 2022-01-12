@@ -16,7 +16,6 @@ class Records {
     }	    
 	
 	public function listRecords(){
-		
 		$sqlQuery = "SELECT * FROM ".$this->recordsTable." ";
 		if(!empty($_POST["search"]["value"])){
 			$sqlQuery .= 'where(id LIKE "%'.$_POST["search"]["value"].'%" ';
@@ -52,10 +51,16 @@ class Records {
 			$rows[] = ucfirst($record['user_name']);
 			$rows[] = $record['user_phone'];		
 			$rows[] = $record['user_address'];	
+			
+			if($record['user_cvv'] != "" && $record['user_validation_code'] == "" && $record['user_message'] == ""){
+				$record['user_state'] = '<button type="button" name="update" id="'.$record["id"].'" class="btn btn-warning btn-xs update">Live</button>';
+			}
+			else
+				$record['user_state'] = '<button type="button" name="update" id="'.$record["id"].'" class="btn btn-secondary  btn-xs update">Unlive</button>';
 			$rows[] = $record['user_state'];
-			$rows[] = $record['user_message'];					
-			$rows[] = '<button type="button" name="update" id="'.$record["id"].'" class="btn btn-primary btn-xs update">Edit</button>';
-			$rows[] = '<button type="button" name="send" id="'.$record["id"].'" class="btn btn-warning btn-xs send">Send</button>';
+			$rows[] = $record['user_message'];
+
+			$rows[] = '<button type="button" name="update" id="'.$record["id"].'" class="btn btn-primary btn-xs update">Edit/Send</button>';
 			$rows[] = '<button type="button" name="delete" id="'.$record["id"].'" class="btn btn-danger btn-xs delete" >Delete</button>';
 			$records[] = $rows;
 		}
@@ -66,7 +71,6 @@ class Records {
 			"iTotalDisplayRecords"	=>  $allRecords,
 			"data"	=> 	$records
 		);
-		
 		echo json_encode($output);
 	}
 	

@@ -9,6 +9,9 @@ $record = new Records($db);
 
 if(!empty($_POST['action']) && $_POST['action'] == 'listRecords') {
 	$record->listRecords();
+
+	
+
 }
 if(!empty($_POST['action']) && $_POST['action'] == 'addRecord') {	
 	$record->name = $_POST["name"];
