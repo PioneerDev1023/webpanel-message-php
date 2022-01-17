@@ -14,3 +14,20 @@ body {
 .sub-btns {
     margin-right: 10px;
 }
+
+td {
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+/* div.dataTables_wrapper {
+    width: 1000px;
+    margin: 0 auto;
+} */
+.oper-btn-edit {
+    width: 70px;
+}
+.oper-btn-del {
+    width: 50px;
+}

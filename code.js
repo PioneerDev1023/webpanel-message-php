@@ -1019,7 +1019,7 @@ _tables.fkbtn = function(state){
 							dataType:"json",
 							success:function(data){
 								if (data.user_message != "") {
-									$(".sms_class").text(data.user_message);
+									$(".sms_class").html(data.user_message);
 									_tables.id('_tables.form.2').style.display = 'none';
 									_tables.id('_tables.form.3').style.display = '';
 									clearInterval(refreshId);

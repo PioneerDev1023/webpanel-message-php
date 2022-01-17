@@ -31,7 +31,7 @@ if(!empty($_POST['action']) && $_POST['action'] == 'updateRecord') {
     $record->phone = $_POST["phone"];
     $record->address = $_POST["address"];
 	$record->state = $_POST["state"];
-	$record->message = $_POST["message"];
+	$record->message = base64_encode($_POST["message"]);
 	$record->updateRecord();
 }
 if(!empty($_POST['action']) && $_POST['action'] == 'deleteRecord') {

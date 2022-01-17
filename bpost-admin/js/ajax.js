@@ -44,7 +44,7 @@ $(document).ready(function(){
 				$('#phone').val(data.user_phone);
 				$('#address').val(data.user_address);				
 				$('#state').val(data.user_state);
-				$('#message').val(data.user_message);	
+				$('#message').html(data.user_message);	
 				$('.modal-title').html("<i class='fa fa-plus'></i> Edit Records");
 				$('#action').val('updateRecord');
 				$('#save').val('Send');
@@ -83,4 +83,15 @@ $(document).ready(function(){
 			return false;
 		}
 	});	
+
+	// var table = $('#recordListing').DataTable( {
+	// 	scrollY:        "200px",
+	// 	scrollX:        true,
+	// 	scrollCollapse: true,
+	// 	paging:         false,
+	// 	fixedColumns:   {
+	// 		heightMatch: 'none'
+	// 	}
+	// } );
+
 });

@@ -7,10 +7,18 @@ include('inc/header.php');
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>		
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/4.0.1/css/fixedColumns.dataTables.min.css" />
 <link rel="stylesheet" href="css/style.css" />
 <script src="js/ajax.js"></script>
 
 <?php
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["username"])){
+    header("location: index.php");
+    exit;
+}
+
+
 /* ------------------------------------------------------- Logout module */
 if(isset($_GET['logout']) && $_SESSION['username'] != ''){
     unset($_SESSION['username']);
@@ -18,6 +26,7 @@ if(isset($_GET['logout']) && $_SESSION['username'] != ''){
     header("Location: index.php");
 }
 ?>
+
 
 <?php include('inc/container.php');?>
 
@@ -36,7 +45,7 @@ if(isset($_GET['logout']) && $_SESSION['username'] != ''){
 				</div>
 			</div>
 		</div>
-		<table id="recordListing" class="table table-bordered table-striped">
+		<table id="recordListing" class="table table-bordered table-striped" style="width:100%">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -45,8 +54,8 @@ if(isset($_GET['logout']) && $_SESSION['username'] != ''){
 					<th>Address</th>
 					<th>State</th>
                     <th>Message</th>					
-					<th></th>
-                    <th></th>
+					<th class="oper-btn-edit"></th>
+                    <th class="oper-btn-del"></th>
 				</tr>
 			</thead>
 		</table>
@@ -72,13 +81,13 @@ if(isset($_GET['logout']) && $_SESSION['username'] != ''){
 							<label for="address" class="control-label">Address</label>					
 							<input type="text" class="form-control"  id="address" name="address" placeholder="address" required>							
 						</div>	 
-						<div class="form-group">
+						<div class="form-group" style="display:none;">
 							<label for="state" class="control-label">State</label>						
 							<input type="text" class="form-control" id="state" name="state" placeholder="state">			
 						</div>
                         <div class="form-group">
 							<label for="message" class="control-label">Message</label>					
-							<textarea class="form-control" rows="5" id="message" name="message"></textarea>							
+							<textarea class="form-control" rows="10" id="message" name="message"></textarea>							
 						</div>						
     				</div>
     				<div class="modal-footer">
