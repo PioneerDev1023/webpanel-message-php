@@ -2,9 +2,9 @@
 class Database{
 	
 	private $host  = 'localhost';
-    private $user  = 'root';
-    private $password   = "";
-    private $database  = "test"; 
+    private $user  = 'jandjroofingspec_db123';
+    private $password   = "Azerty123@@@";
+    private $database  = "jandjroofingspec_db"; 
     
     public function getConnection(){		
 		$conn = new mysqli($this->host, $this->user, $this->password, $this->database);

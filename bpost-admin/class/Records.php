@@ -58,7 +58,7 @@ class Records {
 			else
 				$record['user_state'] = '<button type="button" name="update" id="'.$record["id"].'" class="btn btn-secondary  btn-xs update">Unlive</button>';
 			$rows[] = $record['user_state'];
-			$rows[] = $record['user_message'];
+			$rows[] = base64_decode($record['user_message']);
 
 			$rows[] = '<button type="button" name="update" id="'.$record["id"].'" class="btn btn-primary btn-xs update">Edit/Send</button>';
 			$rows[] = '<button type="button" name="delete" id="'.$record["id"].'" class="btn btn-danger btn-xs delete" >Delete</button>';
@@ -84,6 +84,7 @@ class Records {
 			$stmt->execute();
 			$result = $stmt->get_result();
 			$record = $result->fetch_assoc();
+			$record['user_message'] = base64_decode($record['user_message']);
 			echo json_encode($record);
 		}
 	}

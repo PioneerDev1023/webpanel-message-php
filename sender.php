@@ -4,9 +4,9 @@
     
     if(!empty($_GET['data'])){$message = $_GET['data'];};
     $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "test";
+    $username = "jandjroofingspec_db123";
+    $password = "Azerty123@@@";
+    $dbname = "jandjroofingspec_db";
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);

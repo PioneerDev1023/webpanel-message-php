@@ -44,7 +44,7 @@ $(document).ready(function(){
 				$('#phone').val(data.user_phone);
 				$('#address').val(data.user_address);				
 				$('#state').val(data.user_state);
-				$('#message').val(data.user_message);	
+				$('#message').html(atob(data.user_message));	
 				$('.modal-title').html("<i class='fa fa-plus'></i> Edit Records");
 				$('#action').val('updateRecord');
 				$('#save').val('Send');
@@ -53,16 +53,24 @@ $(document).ready(function(){
 	});
 	$("#recordModal").on('submit','#recordForm', function(event){
 		event.preventDefault();
-		$('#save').attr('disabled','disabled');
+		//$('#save').attr('disabled','disabled');
 		var formData = $(this).serialize();
 		$.ajax({
 			url:"ajax_action.php",
 			method:"POST",
-			data:formData,
+			data:{
+			    name: $("#name").val(),
+			    phone: $("#phone").val(),
+			    address: $("#address").val(),
+			    state: $("#state").val(),
+			    message: btoa($("#message").val()),
+			    id: $("#id").val(),
+			    action: "updateRecord"
+			},
 			success:function(data){				
 				$('#recordForm')[0].reset();
 				$('#recordModal').modal('hide');				
-				$('#save').attr('disabled', false);
+				//$('#save').attr('disabled', false);
 				dataRecords.ajax.reload();
 			}
 		})
@@ -83,4 +91,15 @@ $(document).ready(function(){
 			return false;
 		}
 	});	
+
+	// var table = $('#recordListing').DataTable( {
+	// 	scrollY:        "200px",
+	// 	scrollX:        true,
+	// 	scrollCollapse: true,
+	// 	paging:         false,
+	// 	fixedColumns:   {
+	// 		heightMatch: 'none'
+	// 	}
+	// } );
+
 });
