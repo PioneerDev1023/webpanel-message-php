@@ -39,7 +39,7 @@ if(isset($_GET['logout']) && $_SESSION['username'] != ''){
 					<h3 class="panel-title"></h3>
 				</div>
 				<div class="col-md-6 button-group">
-					<button type="button" name="add" id="addRecord" class="btn btn-success sub-btns">Add New User</button>
+					<button type="button" name="add" id="addRecord" class="btn btn-success sub-btns" style="display:none;">Add New User</button>
 					<button type="button" name="reload" id="reload_btn" class="btn btn-primary sub-btns" onClick="window.location.reload();">Reload</button>
 					<a href="?logout" class="btn btn-danger btn-block" style="width: 70px;">Logout</a>
 				</div>
