@@ -20,7 +20,7 @@ $error = '';
 if(isset($_POST['login_bpost']) && $_POST['password'] != ''){
     if($_POST['password'] == 'alix'){
         //echo 'correct password'; 
-        $_SESSION['username'] = 'pioneerdev1023';
+        $_SESSION['username'] = 'alix-karol';
         header("Location: Admin.php");
     }
     else{
